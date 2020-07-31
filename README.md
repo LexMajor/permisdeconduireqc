@@ -11,7 +11,7 @@ Un browser.
 
 ## L'algorithme lui-même
 
-Ce algo d'encodage n'et pas à ma connaissance disponible de façon publique, et a été trouvé sur un forum. (voir section remerciements ci-dessous). 
+Ce algo d'encodage n'est pas à ma connaissance disponible de façon publique, et a été trouvé sur un forum. (voir section remerciements ci-dessous). 
 
 Le numéro est constitué de 5 "champs" 
 1. (une lettre). La première lettre du nom de famille. 
