@@ -3,7 +3,7 @@ Génération/validation partielle de numéros de permis de conduire du Québec
 
 ## Comment l'utiliser
 
-Ce fichier est une implémentation simple en single-page javascript de l'algorithme qui permet de générer la première partie du numéro de permis de conduire au Québec. Vous n'avez qu'à enregistrer localment (ou hoster) cette page. Elle ne fait aucun appel serveur et tout est exécuté en local, puisqu'on parle d'informations sensibles ici (nom, date de naissance). 
+Ce fichier est une implémentation simple en single-page javascript de l'algorithme qui permet de générer la première partie du numéro de permis de conduire au Québec. L'algorithme n'est pas officiel mais s'est anecdotiquement révélé exact. Vous n'avez qu'à enregistrer localement (ou hoster) cette page. Elle ne fait aucun appel serveur, ne charge aucune librairie distante, et tout est exécuté en local, puisqu'on parle ici d'informations sensibles ici (nom, date de naissance). 
 
 ### Pré-requis. 
 
@@ -11,7 +11,7 @@ Un browser.
 
 ## L'algorithme lui-même
 
-Ce algo d'encodage n'et pas à ma connaissance disponible de façon publique, et a été trouvé sur un forum. (voir section remerciments ci-dessous). 
+Ce algo d'encodage n'est pas à ma connaissance disponible de façon publique, et a été trouvé sur un forum. (voir section remerciements ci-dessous). 
 
 Le numéro est constitué de 5 "champs" 
 1. (une lettre). La première lettre du nom de famille. 
@@ -59,8 +59,8 @@ Il est aussi évidemment possible que certains services à la clientèle utilise
 
 ## Limitations
 
-L'algorithme lui-même, même s'il est anecdotiquement fonctionnel, n'est pas exhaustif. Par exemple, je n'ai pas validé ce que donneraient des cas limite, parexemple:
-* quelqu'un nommé "AAron Aa" ou autre noms qui n'ont pas de consonnes (présumément que les trois chiffres seraient 0 pour un numéro commençant par A0001). 
+L'algorithme lui-même, même s'il est anecdotiquement fonctionnel, n'est pas exhaustif. Je n'ai pas validé ce que donneraient des cas limite, par exemple:
+* quelqu'un nommé "Aaron Aa" ou autre noms qui n'ont pas de consonnes (présumément que les trois chiffres seraient 0 pour un numéro commençant par A0001). 
 * la 101e personne née la même journée sur une combinaison très commune de nom ("J Tremblay"), où les chiffres séquentiels des dernières positions dépasseraient les combinaisons possibles. Sachant qu'il naît en moyenne au "pic" de l'année environ 250 enfants au Québec, il s'agit tout de même d'une situation improbable.
 
 ## Contribution
