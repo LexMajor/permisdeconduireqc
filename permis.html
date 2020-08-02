@@ -29,7 +29,7 @@ var cPrenom = {
 'U':9, 'V':9, 'W':9, 'X':9, 'Y':9, 'Z':9
 };
 
-function normaliser(nom){
+function normaliserLettres(nom){
 	//enlever les accents
 	nom = nom.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 	//enlever les apostrophes et autres cochonneries
@@ -39,8 +39,6 @@ function normaliser(nom){
 	return nom;
 }
 function normaliserNom(nom){
-	// normaliser d'abord comme les prénoms
-	nom = normaliser(nom);
 	//enlever les lettres non-codif�es
 	nom = nom.replace(/[AEIOUYHW]/g,"");
 	//enlever les lettres doublons	
@@ -53,17 +51,21 @@ function calculer(){
 	numeropermis='';
 	document.getElementById("numeropermis").value='';
 	//Aller chercher les valeurs
-	var prenom  = normaliser(document.getElementById("prenom").value);
+	var prenom  = normaliserLettres(document.getElementById("prenom").value);
+	var nom  = normaliserLettres(document.getElementById("prenom").value);
+	//Preserver le nom complet pour la première lettre
+	var nomComplet = nom;
+	// faire le processing supplémentaire du nom de famille
 	var nom = normaliserNom(document.getElementById("nom").value);
 	var ddn = document.getElementById("ddn").value;
 
 	if (prenom=='' || nom=='' || ddn==''){
 		alert("Paramètre manquant");
 	} else {
-			//premiere lettre du nom
-			numeropermis=numeropermis+nom[0];
+			//premiere lettre du nom de famillecomplet
+			numeropermis=numeropermis+nomComplet[0];
 
-			// trois consonnes
+			// trois consonnes du nom traité
 			for(i=1;i<4;i++){
 				if (nom[i]){
 					numeropermis=numeropermis+cNom[nom[i]];
@@ -72,7 +74,7 @@ function calculer(){
 				}
 			}
 
-			//Première lettre du prénom	
+			//Première lettre du préno
 			numeropermis=numeropermis+cPrenom[[prenom[0]]];
 			numeropermis=numeropermis+'-';
 
