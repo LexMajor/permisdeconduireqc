@@ -46,7 +46,6 @@ function normaliserNomFamille(nom){
 	//enlever les lettres doublons	
 	nom = nom.replace(/((\w)\2)/g, '$2'); 
     nom = premiereLettre+nom
-	alert(nom);
 	return nom;
 }
 
@@ -89,7 +88,6 @@ function calculer(){
 
         //lastnumbers
         numeropermis=numeropermis+'-XX'
-        //alert(nom);
         document.getElementById("numeropermis").innerHTML=numeropermis;
 	}
 }
