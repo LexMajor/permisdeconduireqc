@@ -38,55 +38,59 @@ function normaliserLettres(nom){
 	nom = nom.toUpperCase();
 	return nom;
 }
-function normaliserNom(nom){
+function normaliserNomFamille(nom){
+    //préserver première lettre
+    var premiereLettre = nom[0];
 	//enlever les lettres non-codif�es
-	nom = nom.replace(/[AEIOUYHW]/g,"");
+	nom = nom.substr(1).replace(/[AEIOUYHW]/g,"");
 	//enlever les lettres doublons	
 	nom = nom.replace(/((\w)\2)/g, '$2'); 
+    nom = premiereLettre+nom
+	alert(nom);
 	return nom;
 }
 
 function calculer(){
-	//reset
-	numeropermis='';
-	document.getElementById("numeropermis").value='';
-	//Aller chercher les valeurs
-	var prenom  = normaliserLettres(document.getElementById("prenom").value);
-	var nom  = normaliserLettres(document.getElementById("prenom").value);
-	//Preserver le nom complet pour la première lettre
-	var nomComplet = nom;
-	// faire le processing supplémentaire du nom de famille
-	var nom = normaliserNom(document.getElementById("nom").value);
-	var ddn = document.getElementById("ddn").value;
-
 	if (prenom=='' || nom=='' || ddn==''){
 		alert("Paramètre manquant");
 	} else {
-			//premiere lettre du nom de famillecomplet
-			numeropermis=numeropermis+nomComplet[0];
+        //reset
+        numeropermis='';
+        document.getElementById("numeropermis").value='';
+		//Aller chercher les valeurs
+		var prenom  = normaliserLettres(document.getElementById("prenom").value);
+		var nom  = normaliserLettres(document.getElementById("nom").value);
+		//Preserver la première lettre
+		var premiereLettre = nom[0];
+		var nom  = normaliserNomFamille(nom);
+		// faire le processing supplémentaire du nom de famille
+		var ddn = document.getElementById("ddn").value;
 
-			// trois consonnes du nom traité
-			for(i=1;i<4;i++){
-				if (nom[i]){
-					numeropermis=numeropermis+cNom[nom[i]];
-				}else{
-					numeropermis=numeropermis+'0';
-				}
-			}
+        //premiere lettre du nom de famillecomplet
+        numeropermis=numeropermis+premiereLettre;
 
-			//Première lettre du préno
-			numeropermis=numeropermis+cPrenom[[prenom[0]]];
-			numeropermis=numeropermis+'-';
+        // trois consonnes du nom traité
+        for(i=1;i<4;i++){
+            if (nom[i]){
+                numeropermis=numeropermis+cNom[nom[i]];
+            }else{
+                numeropermis=numeropermis+'0';
+            }
+        }
 
-			//yyyy-mm-dd
-			numeropermis=numeropermis+ddn.slice(8,10);
-			numeropermis=numeropermis+ddn.slice(5,7);
-			numeropermis=numeropermis+ddn.slice(2,4);
+        //Première lettre du préno
+        numeropermis=numeropermis+cPrenom[[prenom[0]]];
+        numeropermis=numeropermis+'-';
 
-			//lastnumbers
-			numeropermis=numeropermis+'-XX'
-			//alert(nom);
-			document.getElementById("numeropermis").innerHTML=numeropermis;
+        //yyyy-mm-dd
+        numeropermis=numeropermis+ddn.slice(8,10);
+        numeropermis=numeropermis+ddn.slice(5,7);
+        numeropermis=numeropermis+ddn.slice(2,4);
+
+        //lastnumbers
+        numeropermis=numeropermis+'-XX'
+        //alert(nom);
+        document.getElementById("numeropermis").innerHTML=numeropermis;
 	}
 }
 
